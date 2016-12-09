@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
     Image man,kid,student;
     CalendarView date;
     TimePicker time;
-
+    boolean memberfinish=false;
     int year;
     int month;
     int day;
@@ -84,7 +84,19 @@ public class MainActivity extends AppCompatActivity {
                      l2.setVisibility(View.VISIBLE);
 
                  }
-                 else f1.setVisibility(View.INVISIBLE);
+                 else {
+                     chro1.stop();
+                     chro1.setTextColor(Color.BLACK);
+                     f1.setVisibility(View.INVISIBLE);
+                     t1.setText("");
+                     t2.setText("");
+                     t3.setText("");
+                     v1.setText("");
+                     v2.setText("");
+                     v3.setText("");
+
+                     memberfinish=false;
+                 }
              }
          });
          r1.setOnClickListener(new View.OnClickListener() {
@@ -115,7 +127,7 @@ public class MainActivity extends AppCompatActivity {
                 String s2=t2.getText().toString();
                 String s3=t3.getText().toString();
                 if(s1.equals("")||s2.equals("")||s3.equals("")){
-                    Toast.makeText(null,"인원을 입력하세요",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"인원을 입력하세요",Toast.LENGTH_SHORT).show();
                 }
 
                else {
@@ -151,6 +163,7 @@ public class MainActivity extends AppCompatActivity {
                         v3.setText(String.format("결제금액 :%.1f", lastsum));
 
                     }
+                    memberfinish=true;
                 }
 
             }
@@ -159,9 +172,14 @@ public class MainActivity extends AppCompatActivity {
         timebutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                f1.setVisibility(View.VISIBLE);
-                l1.setVisibility(View.VISIBLE);
-                l2.setVisibility(View.INVISIBLE);
+                if(memberfinish) {
+                    f1.setVisibility(View.VISIBLE);
+                    l1.setVisibility(View.VISIBLE);
+                    l2.setVisibility(View.INVISIBLE);
+                }
+             else {
+                    Toast.makeText(getApplicationContext(),"인원예약을 마치세요",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -188,7 +206,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSelectedDayChange(CalendarView calendarView, int i, int i1, int i2) {
                 year=i;
-                month=i1;
+                month=i1+1;
                 day=i2;
 
             }
@@ -202,7 +220,7 @@ public class MainActivity extends AppCompatActivity {
                 str2=Integer.toString(time.getCurrentHour());
                 str3=Integer.toString(time.getMinute());
 
-                Toast.makeText(null,(year+" "+month+" "+day+str2+":"+str3+"예약이 완료되었습니다"),Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),year+" "+month+" "+day+" "+str2+":"+str3+"예약이 완료되었습니다",Toast.LENGTH_SHORT).show();
             }
         });
 
