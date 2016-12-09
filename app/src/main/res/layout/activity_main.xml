@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/chronometer1"
-            android:format="예약시간에 걸린 시간: %s"
+            android:format="%s"
             android:gravity="center"
             />
     </LinearLayout>
@@ -34,7 +34,6 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="visible"
         android:layout_weight="1
         "
         android:id="@+id/f1">
@@ -64,20 +63,21 @@
                     android:text="일자설정"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/radioButton6"
+                    android:id="@+id/radioButton5"
                     />
 
                 <RadioButton
                     android:text="시간설정"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/radioButton5"
+                    android:id="@+id/radioButton6"
                     android:layout_weight="1" />
 
             </RadioGroup>
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:id="@+id/f2">
 
                 <CalendarView
                     android:layout_width="wrap_content"
@@ -87,7 +87,9 @@
                 <TimePicker
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/timePicker" />
+                    android:id="@+id/timePicker"
+                    android:visibility="invisible"
+                    />
 
             </FrameLayout>
 
